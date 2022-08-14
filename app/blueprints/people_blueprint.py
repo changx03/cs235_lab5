@@ -1,4 +1,7 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, redirect, render_template, url_for
+from flask_wtf import FlaskForm
+from wtforms import IntegerField, SubmitField
+from wtforms.validators import DataRequired
 
 from app.adapters.repository import people_repo
 
@@ -28,6 +31,21 @@ def person_view(person_id):
     return render_template('404.html')
 
 
-@people_blueprint.route('/find')
+@people_blueprint.route('/find', methods=['GET', 'POST'])
 def find_person():
-    return 'TODO: Placeholder'
+    form = SearchForm()
+    if form.validate_on_submit():
+        return redirect(
+            url_for('people_blueprint.person_view', person_id=form.id.data)
+        )
+    else:
+        return render_template(
+            'people_search.html',
+            form=form,
+            handler_url=url_for('people_blueprint.find_person')
+        )
+
+
+class SearchForm(FlaskForm):
+    id = IntegerField("No. of the prime minister", [DataRequired()])
+    submit = SubmitField("Search")

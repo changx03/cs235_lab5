@@ -17,7 +17,7 @@ def home():
 @people_blueprint.route('/people')
 def list_people():
     # Task 1: Render the `people_list.html` template. It takes `people` as a variable.
-    return 'Not implemented yet!'
+    return render_template('people_list.html', people=people_repo)
 
 
 @people_blueprint.route('/people/<int:person_id>')

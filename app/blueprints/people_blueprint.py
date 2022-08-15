@@ -45,5 +45,5 @@ def find_person():
 
 class SearchForm(FlaskForm):
     # Task 2: Define the variables below using IntegerField and SubmitField
-    id = None
-    submit = None
+    id = IntegerField("No. of the prime minister", [DataRequired()])
+    submit = SubmitField("Search")

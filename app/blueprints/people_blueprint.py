@@ -26,7 +26,12 @@ def person_view(person_id):
         if person.id == person_id:
             # Task 1: Render the `people_view.html` template. It takes `img_url`,
             # 'firstname' and 'lastname' as variables.
-            return 'Not implemented yet!'
+            return render_template(
+                'people_view.html',
+                img_url=person.url,
+                firstname=person.firstname,
+                lastname=person.lastname,
+            )
     return render_template('404.html')
 
 

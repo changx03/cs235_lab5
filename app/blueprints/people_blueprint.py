@@ -10,8 +10,8 @@ people_blueprint = Blueprint('people_blueprint', __name__)
 
 @people_blueprint.route('/')
 def home():
-    # Task 3: Render our home page.
-    return 'Not implemented yet!'
+    # Demo: Render our home page.
+    return render_template('home.html')
 
 
 @people_blueprint.route('/people')

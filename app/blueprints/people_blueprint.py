@@ -36,11 +36,17 @@ def find_person():
     form = SearchForm()
     if form.validate_on_submit():
         # TODO: Read id from the form and redirect to `people_blueprint.person_view`
-        return 'Not implemented yet!'
+        return redirect(
+            url_for('people_blueprint.person_view', person_id=form.id.data)
+        )
     else:
         # TODO: Render the `people_search.html` template. It takes `form` and
         # `handler_url` as parameters.
-        return 'Not implemented yet!'
+        return render_template(
+            'people_search.html',
+            form=form,
+            handler_url=url_for('people_blueprint.find_person')
+        )
 
 
 class SearchForm(FlaskForm):
